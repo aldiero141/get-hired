@@ -1,4 +1,5 @@
 import { IconLogout } from "@tabler/icons-react";
+import { Loader2 } from "lucide-react";
 import { Navigate, useNavigate } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -8,11 +9,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useLogout } from "@/features/logout/query";
 import { useGetMe } from "@/features/me/query";
 
 export function SiteHeader() {
   const { data: user, isLoading, isError } = useGetMe();
-  const navigate = useNavigate();
+  const { mutateAsync: logout, isPending: isLoggingOut } = useLogout();
+
+  const handleLogout = () => {
+    logout();
+  };
 
   if (isError)
     return <Navigate to="/auth/login" />;
@@ -29,7 +35,7 @@ export function SiteHeader() {
                 {
                   user?.role === "admin"
                     ? (
-                        <h1>
+                        <h1 className="text-lg font-semibold">
                           Job List
                         </h1>
                       )
@@ -52,11 +58,21 @@ export function SiteHeader() {
             align="end"
             sideOffset={4}
           >
-            <DropdownMenuItem onClick={() => navigate("/auth/login")}>
-              <IconLogout className="size-4 text-destructive" />
-              <span className="text-destructive">
-                Keluar
-              </span>
+            <DropdownMenuItem onClick={handleLogout} disabled={isLoggingOut}>
+              {
+                isLoggingOut
+                  ? (
+                      <Loader2 className="size-4 text-destructive animate-spin" />
+                    )
+                  : (
+                      <>
+                        <IconLogout className="size-4 text-destructive" />
+                        <span className="text-destructive">
+                          Keluar
+                        </span>
+                      </>
+                    )
+              }
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
