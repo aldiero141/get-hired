@@ -1,6 +1,7 @@
 import { IconLogout } from "@tabler/icons-react";
 import { Loader2 } from "lucide-react";
-import { Navigate, useNavigate } from "react-router";
+import { useEffect } from "react";
+import { Navigate } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -11,13 +12,22 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { useLogout } from "@/features/logout/query";
 import { useGetMe } from "@/features/me/query";
+import { useUserActions } from "@/store/user";
 
 export function SiteHeader() {
-  const { data: user, isLoading, isError } = useGetMe();
   const { mutateAsync: logout, isPending: isLoggingOut } = useLogout();
+  const { data: user, isLoading, isError, isSuccess } = useGetMe();
+  const { setUser } = useUserActions();
+
+  useEffect(() => {
+    if (isSuccess && user) {
+      setUser(user);
+    }
+  }, [isSuccess, user]);
 
   const handleLogout = () => {
     logout();
+    setUser({ username: "", role: "" });
   };
 
   if (isError)
