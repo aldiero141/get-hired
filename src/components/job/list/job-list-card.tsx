@@ -7,9 +7,10 @@ type JobListCardProps = {
   title: string;
   dateStarted: string;
   range: string;
+  cta: string;
 };
 
-export default function JobListCard({ status = "active", title, dateStarted, range }: JobListCardProps) {
+export default function JobListCard({ status = "active", title, dateStarted, range, cta }: JobListCardProps) {
   return (
     <Card className="border-0 rounded-lg py-6 shadow-lg">
       <CardContent className="px-6">
@@ -27,8 +28,6 @@ export default function JobListCard({ status = "active", title, dateStarted, ran
                 {status}
               </div>
               <div id="date-started" className="text-sm text-muted-foreground h-8 flex items-center justify-center border border-gray-200 px-2 py-1 rounded">
-                started on
-                {" "}
                 {dateStarted}
               </div>
             </div>
@@ -40,7 +39,7 @@ export default function JobListCard({ status = "active", title, dateStarted, ran
             </p>
           </div>
           <div className="flex items-end justify-end">
-            <Button type="button" size="sm" className="text-sm font-normal rounded-lg">Manage Job</Button>
+            <Button type="button" size="sm" className="text-sm font-normal rounded-lg">{cta || "Manage Job"}</Button>
           </div>
         </div>
       </CardContent>

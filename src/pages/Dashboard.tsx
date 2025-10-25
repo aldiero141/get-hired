@@ -1,5 +1,5 @@
-import AdminDashboard from "@/components/dashboard/admin/AdminDashboard";
-import UserDashboard from "@/components/dashboard/user/UserDashboard";
+import AdminDashboard from "@/components/dashboard/admin/admin-dashboard";
+import UserDashboard from "@/components/dashboard/user/user-dashboard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useUser } from "@/store/user";
 
