@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -8,9 +9,10 @@ type JobListCardProps = {
   dateStarted: string;
   range: string;
   cta: string;
+  id: string;
 };
 
-export default function JobListCard({ status = "active", title, dateStarted, range, cta }: JobListCardProps) {
+export default function JobListCard({ status = "active", title, dateStarted, range, cta, id }: JobListCardProps) {
   return (
     <Card className="border-0 rounded-lg py-6 shadow-lg">
       <CardContent className="px-6">
@@ -39,7 +41,9 @@ export default function JobListCard({ status = "active", title, dateStarted, ran
             </p>
           </div>
           <div className="flex items-end justify-end">
-            <Button type="button" size="sm" className="text-sm font-normal rounded-lg">{cta || "Manage Job"}</Button>
+            <NavLink to={`/dashboard/manage-candidate/${id}`}>
+              <Button type="button" size="sm" className="text-sm font-normal rounded-lg">{cta || "Manage Job"}</Button>
+            </NavLink>
           </div>
         </div>
       </CardContent>

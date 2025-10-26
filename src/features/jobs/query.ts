@@ -1,9 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMe } from "./api";
+import { getCandidates, getJobs } from "./api";
 
-export function useGetMe() {
+export function useGetJobs() {
   return useQuery({
-    queryFn: getMe,
-    queryKey: ["getMe"],
+    queryFn: getJobs,
+    queryKey: ["getJobs"],
+  });
+}
+
+export function useGetCandidates() {
+  return useQuery({
+    queryFn: getCandidates,
+    queryKey: ["getCandidates"],
   });
 }

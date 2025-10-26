@@ -75,7 +75,7 @@ export default function AdminDashboard() {
           </div>
           <div id="list-section" className="w-full h-full flex flex-col gap-4">
             {jobList.map((job, index) => (
-              <JobListCard key={index} status={job.status as "active" | "inactive" | "draft"} title={job.title} dateStarted={job.list_card.started_on_text} range={job.salary_range.display_text} cta={job.list_card.cta} />
+              <JobListCard key={index} id={job.id} status={job.status as "active" | "inactive" | "draft"} title={job.title} dateStarted={job.list_card.started_on_text} range={job.salary_range.display_text} cta={job.list_card.cta} />
             ))}
             {jobList.length === 0 && <EmptyJobList onClick={() => setOpenCreateModal(true)} />}
           </div>

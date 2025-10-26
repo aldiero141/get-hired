@@ -1,8 +1,9 @@
 import { IconLogout } from "@tabler/icons-react";
-import { Loader2 } from "lucide-react";
+import { ChevronLeft, Loader2 } from "lucide-react";
 import { useEffect } from "react";
-import { Navigate } from "react-router";
+import { Navigate, useLocation, useNavigate } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +19,8 @@ export function SiteHeader() {
   const { mutateAsync: logout, isPending: isLoggingOut } = useLogout();
   const { data: user, isLoading, isError, isSuccess } = useGetMe();
   const { setUser } = useUserActions();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isSuccess && user) {
@@ -45,9 +48,23 @@ export function SiteHeader() {
                 {
                   user?.role === "admin"
                     ? (
-                        <h1 className="text-lg font-semibold">
-                          Job List
-                        </h1>
+                        <div className="flex items-center justify-between gap-2">
+                          {
+                            pathname.includes("/dashboard/manage-candidate")
+                              ? (
+                                  <>
+                                    <Button variant="outline" size="sm" className="text-sm font-semibold" onClick={() => navigate(-1)}>
+                                      Job List
+                                    </Button>
+                                    <ChevronLeft className="size-4" />
+                                    <Button variant="outline" size="sm" className="text-sm font-semibold">
+                                      Manage Candidate
+                                    </Button>
+                                  </>
+                                )
+                              : <h1 className="text-lg font-semibold">Job List</h1>
+                          }
+                        </div>
                       )
                     : null
                 }

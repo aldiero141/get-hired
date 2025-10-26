@@ -41,3 +41,31 @@ export type Fields = {
     required: boolean;
   };
 };
+
+export type CandidateAttribute = {
+  key: string;
+  label: string;
+  value: string;
+  order: number;
+};
+
+export type Candidate = {
+  id: string;
+  attributes: CandidateAttribute[];
+};
+
+export type CandidateResponse = {
+  data: Candidate[];
+};
+
+export type FormattedCandidate = {
+  id: string;
+  full_name: string;
+  email: string;
+  phone: string;
+  photo_profile: string;
+  date_of_birth: string;
+  domicile: string;
+  gender: string;
+  linkedin_link: string;
+};
