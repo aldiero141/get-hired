@@ -1,5 +1,6 @@
-// import api from "@/lib/axios";
 import type { User } from "./type";
+// import api from "@/lib/axios";
+import { toast } from "@/components/Toaster";
 
 type LoginCredentials = {
   username: string;
@@ -30,6 +31,7 @@ export function login(credentials: LoginCredentials): Promise<User> {
         return;
       }
 
+      toast({ title: "Error", description: "Invalid credentials", type: "error" });
       throw new Error("Invalid credentials");
     }, 500);
   });

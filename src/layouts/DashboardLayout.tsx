@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { SiteHeader } from "./site-header";
+import { SiteHeader } from "./SiteHeader";
 
 export default function DashboardLayout() {
   return (

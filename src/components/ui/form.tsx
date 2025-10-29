@@ -98,7 +98,7 @@ function FormLabel({
     <Label
       data-slot="form-label"
       data-error={!!error}
-      className={cn("data-[error=true]:text-destructive", className)}
+      className={cn("data-[error=true]:text-destructive text-xs font-normal gap-0", className)}
       htmlFor={formItemId}
       {...props}
     />
@@ -148,10 +148,10 @@ function FormMessage({ className, withIcon = false, ...props }: React.ComponentP
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-destructive text-sm flex items-center gap-2", className)}
+      className={cn("text-destructive text-xs flex items-center gap-2", className)}
       {...props}
     >
-      {withIcon && <TriangleAlert className="font-semibold size-4" />}
+      {withIcon && <TriangleAlert className="font-semibold size-3" />}
       {body}
     </p>
   );
