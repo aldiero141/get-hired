@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { toast } from "@/components/Toaster";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -58,6 +59,8 @@ export default function CreateJobModal({ openCreateModal, setOpenCreateModal }: 
     // Log all the field values
     console.warn("Form values:", values);
     console.warn("Field values:", fieldValues);
+    toast({ title: "Success", description: "Job created successfully", type: "success" });
+    setOpenCreateModal(false);
 
     // Here you can submit the form with both the form values and field values
     // For example:
