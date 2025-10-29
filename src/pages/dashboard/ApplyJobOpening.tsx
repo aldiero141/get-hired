@@ -3,7 +3,7 @@ import CreateApplicationForm from "@/components/application/create/create-applic
 export default function ApplyJobOpeningPage() {
   return (
     <div className="flex flex-col w-full h-full">
-      <CreateApplicationForm/>
+      <CreateApplicationForm />
     </div>
   );
 }
