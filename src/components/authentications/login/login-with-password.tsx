@@ -3,6 +3,7 @@ import { Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router";
 import { z } from "zod";
+import { toast } from "@/components/Toaster";
 import { Button } from "@/components/ui/button";
 import { FieldSeparator } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -45,7 +46,11 @@ export default function LoginWithPassword({
   });
 
   const handleLogin = async (value: z.infer<typeof formSchema>) => {
-    await login(value);
+    await login(value).then(() => {
+      toast({ title: "Success", description: "Login successfully", type: "success" });
+    }).catch((error) => {
+      toast({ title: "Error", description: error.message, type: "error" });
+    });
   };
 
   return (

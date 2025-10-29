@@ -1,7 +1,9 @@
+import CreateApplicationForm from "@/components/application/create/create-application-form";
+
 export default function ApplyJobOpeningPage() {
   return (
-    <div>
-      <h1>Apply Job Opening</h1>
+    <div className="flex flex-col w-full h-full">
+      <CreateApplicationForm/>
     </div>
   );
 }
